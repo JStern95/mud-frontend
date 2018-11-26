@@ -8,7 +8,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* body::after{
+  content: "";
+  background: url(https://i.imgur.com/4GPSJeR.jpg);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+} */
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.gameroom{
+  height: 40px;
+}
+
+/* .gameboard{
+  max-height: 100%
+} */
+
+img{
+  height: 75vh;
 }
