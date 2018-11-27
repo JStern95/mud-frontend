@@ -1,9 +1,8 @@
 import React from 'react';
 import Phaser from "phaser-ce"
 
-const loadGame = ()=>{
+const loadGame = (props)=>{
   const game = new Phaser.Game((window.innerWidth * 0.75), window.innerHeight, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
-
     function preload() {
         game.load.image('p1Bullet', 'https://i.imgur.com/PM0aRt2.png');
         game.load.image('playerOne', 'https://i.imgur.com/nAWwo16.png');
@@ -16,9 +15,10 @@ const loadGame = ()=>{
     let playerTwo;
     let p1Weapon;
     let p2Weapon;
-    let cursors;
-    let fireButton;
-    let boostButton;
+    let p1Forward;
+    let p1Right;
+    let p1Left;
+    let p1Shoot;
     let p2Forward;
     let p2Right;
     let p2Left;
@@ -26,82 +26,68 @@ const loadGame = ()=>{
     let timer;
 
     function create() {
-        game.time.events.add(20000, gameOverClock, this)
-
+        // game.time.events.add(20000, gameOverClock, this)
         game.add.sprite(0, 0, 'background')
 
-        p1Weapon = game.add.weapon(10, 'p1Bullet');
-        p1Weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-        p1Weapon.bulletSpeed = 600;
-        p1Weapon.fireRate = 100;
-        // p1Weapon.damage = 50;
-
         playerOne = this.add.sprite(0, (window.innerHeight/2), 'playerOne');
-        playerOne.anchor.set(0.5);
-        playerOne.alive= true
-        playerOne.health= 100
-
-        game.physics.arcade.enable([playerOne]);
-        playerOne.body.collideWorldBounds = true;
-        playerOne.body.bounce.set(1)
-
-        playerOne.body.drag.set(70);
-        playerOne.body.maxVelocity.set(200);
-
-        p1Weapon.trackSprite(playerOne, 0, 0, true);
-
-        cursors = this.input.keyboard.createCursorKeys();
-
-        fireButton = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
-        boostButton = this.input.keyboard.addKey(Phaser.KeyCode.B)
-
-        // ***********************
+        p1Weapon = game.add.weapon(10, 'p1Bullet');
 
         playerTwo = this.add.sprite((window.innerWidth-13), (window.innerHeight/2), 'playerTwo');
-        game.physics.arcade.enable([playerTwo])
-        playerTwo.body.collideWorldBounds = true;
-        playerTwo.body.bounce.set(1)
-        playerTwo.anchor.set(0.5);
-        playerTwo.alive= true
-        playerTwo.health= 100
-        playerTwo.angle= 180
         p2Weapon = game.add.weapon(10, 'p2Bullet');
-        p2Weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-        p2Weapon.bulletSpeed = 600;
-        p2Weapon.fireRate = 100;
-        // p2Weapon.damage = 100;
-        playerTwo.body.drag.set(70);
-        playerTwo.body.maxVelocity.set(200);
 
-        p2Weapon.trackSprite(playerTwo, 0, 0, true);
+        p1Forward = this.input.keyboard.addKey(Phaser.KeyCode.P)
+        p1Right = this.input.keyboard.addKey(Phaser.KeyCode.QUOTES)
+        p1Left = this.input.keyboard.addKey(Phaser.KeyCode.L)
+        p1Shoot = this.input.keyboard.addKey(Phaser.KeyCode.ENTER)
 
-        p2Forward = this.input.keyboard.addKey(Phaser.KeyCode.W)
-        p2Right = this.input.keyboard.addKey(Phaser.KeyCode.D)
-        p2Left = this.input.keyboard.addKey(Phaser.KeyCode.A)
-        p2Shoot = this.input.keyboard.addKey(Phaser.KeyCode.C)
+        p2Forward = this.input.keyboard.addKey(Phaser.KeyCode.S)
+        p2Right = this.input.keyboard.addKey(Phaser.KeyCode.C)
+        p2Left = this.input.keyboard.addKey(Phaser.KeyCode.Z)
+        p2Shoot = this.input.keyboard.addKey(Phaser.KeyCode.SHIFT)
 
+        createPlayer(playerOne, p1Weapon, this)
+        createPlayer(playerTwo, p2Weapon, this)
+    }
+
+    function createPlayer(player, laser){
+      laser.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+      laser.bulletSpeed = 600;
+      laser.fireRate = 100;
+      player.anchor.set(0.5);
+      player.alive= true
+      player.health= 100
+
+      game.physics.arcade.enable([player]);
+      player.body.collideWorldBounds = true;
+      player.body.bounce.set(1)
+
+      player.body.drag.set(70);
+      player.body.maxVelocity.set(200);
+
+      player.key === "playerTwo" ? player.angle = 180 : player.angle=0
+
+      laser.trackSprite(player, 0, 0, true);
     }
 
     function update() {
 
-        if (cursors.up.isDown){
+        if (p1Forward.isDown){
             game.physics.arcade.accelerationFromRotation(playerOne.rotation, 300, playerOne.body.acceleration);
         } else{
             playerOne.body.acceleration.set(0);
         }
 
-        if (cursors.left.isDown){
+        if (p1Left.isDown){
             playerOne.body.angularVelocity = -300;
-        } else if (cursors.right.isDown){
+        } else if (p1Right.isDown){
             playerOne.body.angularVelocity = 300;
         } else{
             playerOne.body.angularVelocity = 0;
         }
 
-        if (fireButton.isDown){
+        if (p1Shoot.isDown){
             p1Weapon.fire();
         }
-
 
         //*********
         if (p2Forward.isDown){
@@ -118,13 +104,8 @@ const loadGame = ()=>{
             playerTwo.body.angularVelocity = 0;
         }
 
-        if (p2Shoot.isDown){
+        if (p2Shoot.isDown && p2Shoot.event.location ===1){
             p2Weapon.fire();
-        }
-        //*********
-
-        if (boostButton.isDown) {
-          alert(playerTwo.health)
         }
 
         game.world.wrap(playerOne, 16);
@@ -148,12 +129,12 @@ const loadGame = ()=>{
     // }
 
     function playerTwoDamage (obj1, obj2) {
-      obj1.damage(20)
+      obj1.damage(12.5)
       obj2.destroy()
     }
 
     function playerOneDamage (obj1, obj2) {
-      obj1.damage(20)
+      obj1.damage(12.5)
       obj2.destroy()
     }
 
@@ -173,7 +154,6 @@ const loadGame = ()=>{
     }
   }
 
-
     function render() {
       game.debug.text("Time until game over: " + game.time.events.duration, 32, 32)
       game.debug.text("Player One Health:" + playerOne.health , 32, 48)
@@ -181,14 +161,12 @@ const loadGame = ()=>{
     }
 }
 
-const PlayingArea = () =>{
+const LocalPlayingArea = (props) =>{
   return(
     <>
-    {loadGame()}
+      {loadGame(props)}
     </>
   )
 }
 
-export default PlayingArea
-
-    // <img src="https://i.imgur.com/9JtcWlW.png"/>
+export default LocalPlayingArea

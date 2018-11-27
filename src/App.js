@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
 
 import Home from "./pages/home"
 import Lobby from "./pages/lobby"
@@ -16,8 +16,8 @@ class App extends Component {
         <>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/lobby" render={()=><Redirect to="/games"/>}/>
             <Route exact path="/games" component={Lobby} />
-            <Route exact path="/lobby" component={Lobby} />
             <Route exact path="/rules" component={Home} />
             <Route path="/games/:gameId" component={Game} />
             <Route component={Error} />
