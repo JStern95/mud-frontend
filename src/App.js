@@ -10,8 +10,35 @@ import Game from "./pages/Game"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
 
+import { AppConsumer } from './context/AppContext';
+
+let value
 
 class App extends Component {
+  static contextType = AppConsumer;
+
+  componentWillMount = () => {
+      value = this.context;
+      console.log(value)
+      fetch(`http://localhost:3000/api/v1/profile`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+          }
+        })
+        .then(response => response.json())
+        .then((JSONResponse) => {
+          if (JSONResponse.message === "Please log in") {
+          } else{
+            debugger
+            value.dispatch({
+                type: 'SET_CURRENT_USER',
+                payload: JSONResponse.user.username
+              })
+          }
+        })
+      }
+
   render() {
     return (
       <Router>
@@ -33,3 +60,8 @@ class App extends Component {
 }
 
 export default App;
+
+// value.dispatch({
+//     type: 'SET_CURRENT_USER',
+//     payload: JSONResponse.username
+//   })

@@ -16,7 +16,6 @@ export default class Lobby extends Component {
   }
 
   mapGames = ()=> {
-    debugger
     return this.state.games.map(game=><li>{game.title}</li>)
   }
 

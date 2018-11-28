@@ -4,16 +4,43 @@ export const AppContext = createContext()
 
 export const AppConsumer = AppContext.Consumer
 
+const reducer = (state, action) => {
+  // debugger
+  //case 'TOGGLE':
+    //return { ...state, loggedIn: true}
+  switch (action.type) {
+    case 'SET_CURRENT_USER':
+      debugger
+      return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
+    case 'AUTHENTICATING_USER':
+      return { ...state, authenticatingUser: true }
+    case 'AUTHENTICATED_USER':
+      return { ...state, authenticatingUser: false }
+    case 'FAILED_LOGIN':
+      return {
+        ...state,
+        failedLogin: true,
+        error: action.payload,
+        authenticatingUser: false
+      }
+    default:
+      return state
+  }
+};
+
 export class AppProvider extends Component {
   state = {
     user: null,
     loggedIn: false,
     authenticatingUser: false,
     failedLogin: false,
-    error: null
+    error: null,
+    dispatch: action => {
+      this.setState(state => reducer(state, action));
+      }
     }
 
-    
+
 
   render() {
     return (

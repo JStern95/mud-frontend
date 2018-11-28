@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
+
 import { AppConsumer } from '../context/AppContext';
-// this.props.context
+import { loginUser } from '../actions/user'
+
+let value
+
 export default class Login extends Component {
+  static contextType = AppConsumer;
 
   state={
     username: "",
     password: ""
+  }
+
+  componentDidMount=()=>{
+    value = this.context;
+    console.log(value.loggedIn)
   }
 
   handleChange = e =>{
@@ -17,27 +27,64 @@ export default class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
-    this.setState({
-      username: "",
-      password: ""
-    },()=>console.log(this.state))
+    fetch("http://localhost:3000/api/v1/login", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          user:{
+            username: this.state.username,
+            password: this.state.password
+          }
+        })
+      })
+      .then(response => {
+        console.log(response)
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw response
+        }
+      })
+      .then(JSONResponse => {
+        console.log('%c INSIDE YE OLDE .THEN', 'color: navy', JSONResponse)
+        localStorage.setItem('jwt', JSONResponse.jwt)
+        value.dispatch({
+          type: 'SET_CURRENT_USER',
+          payload: JSONResponse.user.username
+        })
+      })
+      .then(this.setState({
+        username: "",
+        password: ""
+      }))
+      .catch(r => r.json().then(e => value.dispatch({
+        type: 'FAILED_LOGIN',
+        payload: e.message
+      })))
+    e.target.reset()
   }
 
   render() {
-
     return (
-      <>
-      <div>Hey Bitch</div>
-      <form onSubmit={this.handleSubmit}>
-      <input type="text" onChange={this.handleChange} name="username" placeholder="Username..."/>
-      <br/>
-      <input type="password" onChange={this.handleChange} name="password" placeholder="Password..."/>
-      <br/>
-      <input type="submit"/>
-      </form>
-      <NavLink to={"/signup"}><button>Register</button></NavLink>
-      </>
+      <AppConsumer>
+        {context=>{
+          return(context.loggedIn ? <Redirect to="/lobby"/> :
+            <>
+              <form onSubmit={this.handleSubmit}>
+                <input type="text" onChange={this.handleChange} name="username" placeholder="Username..."/>
+                <br/>
+                <input type="password" onChange={this.handleChange} name="password" placeholder="Password..."/>
+                <br/>
+                <input type="submit"/>
+              </form>
+              <NavLink to={"/signup"}><button>Register</button></NavLink>
+            </>
+        )
+      }}
+      </AppConsumer>
     );
   }
 };
