@@ -32,10 +32,10 @@ export default class LocalGame extends React.Component {
       });
 
       function preload() {
-        game.load.image('p1Bullet', 'https://i.imgur.com/PM0aRt2.png');
-        game.load.image('playerOne', 'https://i.imgur.com/nAWwo16.png');
-        game.load.image('p2Bullet', 'https://i.imgur.com/1ZncTHv.png');
-        game.load.image('playerTwo', 'https://i.imgur.com/WBjpFf5.png');
+        game.load.image('p1Bullet', 'https://i.imgur.com/1ZncTHv.png');
+        game.load.image('playerOne', 'https://i.imgur.com/E4dSIaY.png');
+        game.load.image('p2Bullet', 'https://i.imgur.com/PM0aRt2.png');
+        game.load.image('playerTwo', 'https://i.imgur.com/nAWwo16.png');
         game.load.image('background', "https://i.imgur.com/9JtcWlW.png")
         game.load.image('health', "https://i.imgur.com/RCqebgh.png")
       }
@@ -79,15 +79,15 @@ export default class LocalGame extends React.Component {
         playerTwo = this.add.sprite((window.innerWidth - 13), (window.innerHeight / 2), 'playerTwo');
         p2Weapon = game.add.weapon(10, 'p2Bullet');
 
-        p1Forward = this.input.keyboard.addKey(Phaser.KeyCode.UP)
-        p1Right = this.input.keyboard.addKey(Phaser.KeyCode.RIGHT)
-        p1Left = this.input.keyboard.addKey(Phaser.KeyCode.LEFT)
-        p1Shoot = this.input.keyboard.addKey(Phaser.KeyCode.QUESTION_MARK)
+        p1Forward = this.input.keyboard.addKey(Phaser.KeyCode.W)
+        p1Right = this.input.keyboard.addKey(Phaser.KeyCode.D)
+        p1Left = this.input.keyboard.addKey(Phaser.KeyCode.A)
+        p1Shoot = this.input.keyboard.addKey(Phaser.KeyCode.SHIFT)
 
-        p2Forward = this.input.keyboard.addKey(Phaser.KeyCode.W)
-        p2Right = this.input.keyboard.addKey(Phaser.KeyCode.D)
-        p2Left = this.input.keyboard.addKey(Phaser.KeyCode.A)
-        p2Shoot = this.input.keyboard.addKey(Phaser.KeyCode.SHIFT)
+        p2Forward = this.input.keyboard.addKey(Phaser.KeyCode.UP)
+        p2Right = this.input.keyboard.addKey(Phaser.KeyCode.RIGHT)
+        p2Left = this.input.keyboard.addKey(Phaser.KeyCode.LEFT)
+        p2Shoot = this.input.keyboard.addKey(Phaser.KeyCode.QUESTION_MARK)
 
         createPlayer(playerOne, p1Weapon, this)
         createPlayer(playerTwo, p2Weapon, this)
@@ -129,7 +129,7 @@ export default class LocalGame extends React.Component {
           playerOne.body.angularVelocity = 0;
         }
 
-        if (p1Shoot.isDown) {
+        if (p1Shoot.isDown && p1Shoot.event.location === 1) {
           p1Weapon.fire();
         }
 
@@ -148,7 +148,7 @@ export default class LocalGame extends React.Component {
           playerTwo.body.angularVelocity = 0;
         }
 
-        if (p2Shoot.isDown && p2Shoot.event.location === 1) {
+        if (p2Shoot.isDown) {
           p2Weapon.fire();
         }
 

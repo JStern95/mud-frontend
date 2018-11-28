@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import { API_LINK } from "../constants"
+import { NavLink } from 'react-router-dom';
 
 export default class Lobby extends Component {
 
@@ -17,7 +16,8 @@ export default class Lobby extends Component {
   }
 
   mapGames = ()=> {
-    return this.state.games.map(game=><li>{game.name}</li>)
+    debugger
+    return this.state.games.map(game=><li>{game.title}</li>)
   }
 
   render() {
@@ -25,7 +25,8 @@ export default class Lobby extends Component {
       <div className="gamelist">
         <h1>Lobby</h1>
         <ul>
-          {this.mapGames()}
+          <li><NavLink to={"/games/local"}>Local Game</NavLink></li>
+          {this.state.games.length === 0 ? null : this.mapGames()}
         </ul>
       </div>
     );
