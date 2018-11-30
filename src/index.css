@@ -39,6 +39,7 @@ code {
 
 #scoreboard-header{
   margin-top: 3%;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .startButton{
@@ -52,7 +53,11 @@ code {
   bottom:1px;
   position: absolute;
   padding-left: 0;
-  margin-left: -4%;
+  margin-left: -3.5%;
+}
+
+.eight-bit-font{
+  font-family: 'Press Start 2P', cursive;
 }
 
 /* img{

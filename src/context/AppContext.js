@@ -5,9 +5,6 @@ export const AppContext = createContext()
 export const AppConsumer = AppContext.Consumer
 
 const reducer = (state, action) => {
-  // debugger
-  //case 'TOGGLE':
-    //return { ...state, loggedIn: true}
   switch (action.type) {
     case 'SET_CURRENT_USER':
       debugger

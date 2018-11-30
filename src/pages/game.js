@@ -1,46 +1,29 @@
 import React, { Component } from 'react';
-import LocalGame from "../components/LocalGame"
-import ControlPanel from "../containers/ControlPanel"
+import { NavLink, Redirect } from 'react-router-dom';
+
+import LocalGameRoom from "../containers/LocalGameRoom"
+import MultiGameRoom from "../containers/MultiGameRoom"
 
 export default class Game extends Component {
 
-  state={
-    playerOne: 0,
-    playerTwo: 0,
-    currentGame: 0,
-    activeGame: false
+  checkRoute=()=>{
+    let routePath = this.props.match.params.gameId
+    if (routePath === "local") {
+      return <LocalGameRoom />
+    } else if ((/^[0-9]+$/).test(routePath)) {
+      return <MultiGameRoom />
+    } else {
+      alert("Not a valid room")
+      return <Redirect to="/lobby"/>
+    }
   }
 
-  increaseScore=(player) =>{
-    debugger
-    this.setState({
-      [player.key]: this.state[player.key] + 1
-    })
-  }
-
-  startGame=()=>{
-    this.setState({
-      currentGame: this.state.currentGame +1,
-      activeGame: true
-    })
-  }
-
-  renderStartButton=()=>{
-    this.setState({
-      activeGame: false
-    })
-  }
 
   render() {
-    let routePath = this.props.match.params.gameId
     return (
-      <div className="gameroom">
-        <div id="gameboard">
-          {this.state.activeGame? routePath==="local"?<LocalGame increaseScore={this.increaseScore} renderStartButton={this.renderStartButton} key={this.state.currentGame}/>:<p>Hi</p> : null}
-        </div>
-        <ControlPanel gameInfo={this.state} startGame={this.startGame}/>
-      </div>
-
+      <>
+      {this.checkRoute()}
+      </>
     );
   }
 };
