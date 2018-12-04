@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 
 import LocalGameRoom from "../containers/LocalGameRoom"
+import SingleGameRoom from "../containers/SingleGameRoom"
 import MultiGameRoom from "../containers/MultiGameRoom"
 
 export default class Game extends Component {
@@ -10,8 +11,10 @@ export default class Game extends Component {
     let routePath = this.props.match.params.gameId
     if (routePath === "local") {
       return <LocalGameRoom />
-    } else if ((/^[0-9]+$/).test(routePath)) {
-      return <MultiGameRoom />
+    } else if (routePath === "single") {
+      return <SingleGameRoom />
+    }else if ((/^[0-9]+$/).test(routePath)) {
+      return <MultiGameRoom routePath={routePath}/>
     } else {
       alert("Not a valid room")
       return <Redirect to="/lobby"/>

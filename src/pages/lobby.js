@@ -40,7 +40,7 @@ export default class Lobby extends Component {
           <br/>
           <AppConsumer>
             {context=>{
-              return(!context.loggedIn ? <p> Please log in to see multiplayer games! </p> :
+              return(!context.loggedIn ? <p> Please log in to see ranked games! </p> :
                 <>
                   <NewGameModal />
                   {this.state.games.length === 0 ? null : this.mapGames()}
@@ -48,7 +48,7 @@ export default class Lobby extends Component {
                     )}}
               </AppConsumer>
               <ActionCable
-                channel={{ channel: 'GamesChannel' }}
+                channel={{ channel: 'LobbyChannel' }}
                 onReceived={this.handleReceivedGame}
               />
         </ul>

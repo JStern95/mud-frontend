@@ -27,7 +27,7 @@ const reducer = (state, action) => {
 
 export class AppProvider extends Component {
   state = {
-    user: null,
+    user: {},
     loggedIn: false,
     authenticatingUser: false,
     failedLogin: false,

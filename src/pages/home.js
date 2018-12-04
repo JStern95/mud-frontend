@@ -1,8 +1,13 @@
 import React from 'react';
+import Flash from 'react-reveal/Flash';
 
 const Home = () => {
 	return(
-    <h1>HOME</h1>
+		<div className="home white-font">
+			<Flash>
+	    	<h1><center><h1 className="eight-bit-font">Don't Kill Them</h1></center></h1>
+			</Flash>
+		</div>
   )
 }
 

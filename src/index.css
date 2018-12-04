@@ -60,6 +60,39 @@ code {
   font-family: 'Press Start 2P', cursive;
 }
 
+.white-font{
+  color: white
+}
+
+.home {
+  min-width: 100vh;
+  min-height: 100vh;
+}
+
+.home::after{
+  content: "";
+  background: url("https://i.pinimg.com/originals/ac/68/e9/ac68e9ede5b84d83bf172fa518f03461.gif") no-repeat; background-size: cover;
+  opacity: 0.75;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+/* .blinking{
+    animation:blinkingText 2.0s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    20%{ color: transparent }
+    40%{     color: #000;    }
+    60%{   color: transparent   }
+    80%{   color: #000;   }
+    100%{   color: transparent   }
+} */
+
 /* img{
   height: 75vh;
 } */

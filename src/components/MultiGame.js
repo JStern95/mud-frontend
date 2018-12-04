@@ -4,24 +4,13 @@ import Phaser from "phaser-ce"
 
 export default class LocalGame extends React.Component {
 
-    componentDidMount=()=>{
-      // let config={
-      //   width: (window.innerWidth * 0.70),
-      //   height: window.innerHeight,
-      //   renderer: Phaser.CANVAS,
-      //   parent: 'gameboard',
-      //   state: {
-      //     preload: preload,
-      //     create: create,
-      //     update: update,
-      //     render: render
-      //   },
-      //   clearBeforeRender: true
-      // }
+    position={}
+    isMoving=false
 
+    componentDidMount=()=>{
       let game = new Phaser.Game(
-        (window.innerWidth * 0.70),
-        window.innerHeight,
+        1080,
+        900,
         Phaser.CANVAS,
         'gameboard',
       {
@@ -58,20 +47,22 @@ export default class LocalGame extends React.Component {
       let healthFour;
 
       function create() {
+
         game.time.events.add(20000, gameOverClock, this)
         game.add.sprite(0, 0, 'background')
+        game.stage.disableVisibilityChange = true
 
-        healthOne = game.add.sprite(50, 50, 'health')
-        game.physics.arcade.enable(healthOne)
-
-        healthTwo = game.add.sprite(((window.innerWidth * 0.70) - 50), 50, 'health')
-        game.physics.arcade.enable(healthTwo)
-
-        healthThree = game.add.sprite(((window.innerWidth * 0.70) - 50), (window.innerHeight -50), 'health')
-        game.physics.arcade.enable(healthThree)
-
-        healthFour = game.add.sprite(50, (window.innerHeight -50), 'health')
-        game.physics.arcade.enable(healthFour)
+        // healthOne = game.add.sprite(50, 50, 'health')
+        // game.physics.arcade.enable(healthOne)
+        //
+        // healthTwo = game.add.sprite(((window.innerWidth * 0.70) - 50), 50, 'health')
+        // game.physics.arcade.enable(healthTwo)
+        //
+        // healthThree = game.add.sprite(((window.innerWidth * 0.70) - 50), (window.innerHeight -50), 'health')
+        // game.physics.arcade.enable(healthThree)
+        //
+        // healthFour = game.add.sprite(50, (window.innerHeight -50), 'health')
+        // game.physics.arcade.enable(healthFour)
 
         playerOne = this.add.sprite(0, (window.innerHeight / 2), 'playerOne');
         p1Weapon = game.add.weapon(10, 'p1Bullet');
@@ -103,9 +94,9 @@ export default class LocalGame extends React.Component {
 
         game.physics.arcade.enable([player]);
         player.body.collideWorldBounds = true;
-        player.body.bounce.set(1)
+        // player.body.bounce.set(1)
 
-        player.body.drag.set(70);
+        player.body.drag.set(1000); //Changed for AC
         player.body.maxVelocity.set(200);
 
         player.key === "playerTwo" ? player.angle = 180 : player.angle = 0
@@ -117,16 +108,31 @@ export default class LocalGame extends React.Component {
 
         if (p1Forward.isDown) {
           game.physics.arcade.accelerationFromRotation(playerOne.rotation, 300, playerOne.body.acceleration);
+          this.isMoving=true
+          this.position={x: playerOne.x, y:playerOne.y}
+          console.log(this.position)
+          console.log(this.isMoving)
         } else {
           playerOne.body.acceleration.set(0);
+          this.isMoving=false
+          console.log(this.isMoving)
         }
 
         if (p1Left.isDown) {
           playerOne.body.angularVelocity = -300;
+          this.isMoving=true
+          this.position={x: playerOne.x, y:playerOne.y}
+          console.log(playerOne.angle)
+          console.log(this.isMoving)
         } else if (p1Right.isDown) {
           playerOne.body.angularVelocity = 300;
+          this.isMoving=true
+          this.position={x: playerOne.x, y:playerOne.y}
+          console.log(playerOne.angle)
+          console.log(this.isMoving)
         } else {
           playerOne.body.angularVelocity = 0;
+          this.isMoving=false
         }
 
         if (p1Shoot.isDown && p1Shoot.event.location === 1) {
@@ -156,7 +162,7 @@ export default class LocalGame extends React.Component {
 
         game.physics.arcade.overlap(playerTwo, p1Weapon.bullets, playerTwoDamage, null, this)
         game.physics.arcade.overlap(playerOne, p2Weapon.bullets, playerOneDamage, null, this)
-        game.physics.arcade.collide(playerOne, playerTwo, bouceBois, null, this)
+        // game.physics.arcade.collide(playerOne, playerTwo, bouceBois, null, this)
 
         game.physics.arcade.overlap(playerTwo, healthOne, health, null, this)
         game.physics.arcade.overlap(playerOne, healthOne, health, null, this)
@@ -187,10 +193,10 @@ export default class LocalGame extends React.Component {
         p2Weapon.createBullets(1)
       }
 
-      function bouceBois(obj1, obj2) {
-        obj1.body.bounce.set(1)
-        obj2.body.bounce.set(1)
-      }
+      // function bouceBois(obj1, obj2) {
+      //   obj1.body.bounce.set(1)
+      //   obj2.body.bounce.set(1)
+      // }
 
       function health(obj1, obj2){
         obj1.damage(-25)
@@ -229,7 +235,10 @@ export default class LocalGame extends React.Component {
 
   render() {
     return (
-      null
+      <>
+      {null}
+      </>
     );
   }
 };
+// {this.renderGame()}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 
 import { AppConsumer } from '../context/AppContext';
-import { loginUser } from '../actions/user'
 
 let value
 
@@ -53,7 +52,7 @@ export default class Login extends Component {
         localStorage.setItem('jwt', JSONResponse.jwt)
         value.dispatch({
           type: 'SET_CURRENT_USER',
-          payload: JSONResponse.user.username
+          payload: JSONResponse.user
         })
       })
       .then(this.setState({

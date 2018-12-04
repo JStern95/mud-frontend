@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import Lobby from "./pages/Lobby"
 import Error from "./pages/Error"
 import Game from "./pages/Game"
+import Rankings from "./pages/Rankings"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
 
@@ -28,12 +29,11 @@ class App extends Component {
         })
         .then(response => response.json())
         .then((JSONResponse) => {
-          if (JSONResponse.message === "Please log in") {
-          } else{
-            debugger
+          // debugger
+          if ("user" in JSONResponse) {
             value.dispatch({
                 type: 'SET_CURRENT_USER',
-                payload: JSONResponse.user.username
+                payload: JSONResponse.user
               })
           }
         })
@@ -51,6 +51,7 @@ class App extends Component {
             <Route exact path="/games" render={()=><Redirect to="/lobby"/>} />
             <Route exact path="/rules" component={Home} />
             <Route path="/games/:gameId" component={Game} />
+            <Route exact path="/rankings" component={Rankings} />
             <Route component={Error} />
           </Switch>
         </>
