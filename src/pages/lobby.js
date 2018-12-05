@@ -44,6 +44,21 @@ export default class Lobby extends Component {
                 )}}
           </AppConsumer>
                 </div>
+
+                <div className="cellphone-container">
+                  <div className="movie">
+                    <img className="movie-img" src="https://i.imgur.com/CoFXu7L.png"></img>
+                    <div className="text-movie-cont">
+                          <h1 className="white-font">Test</h1>
+                      <div className="mr-grid">
+                        <div className="col1">
+                          <p className="movie-description">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 </div>
     );

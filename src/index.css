@@ -17,6 +17,10 @@ body {
 a{
   text-decoration: none;
 }
+
+h3 {
+  margin-top: 0px
+}
 /* body::after{
   content: "";
   background: url(https://i.imgur.com/4GPSJeR.jpg);
@@ -175,14 +179,30 @@ code {
   border-radius: 10px
 }
 
+.register-background{
+  height: 600px;
+  background: rgba(254, 207, 23, .8);
+  display: flex
+  /* box-shadow: inset 0px 0px 10px 10px white; */
+}
+
 .register{
-  margin-top: 40%
+  margin-top: 30%
+}
+
+.register-form{
+  margin-top: 20%
+}
+
+.register-btn{
+  background: rgba(255,46,168,1);
+  height: 30px
 }
 
 /* TESTING LOBBY CARDS */
 
 .container{
-  width:50%;
+  width:80%;
   height:100%;
   margin-left: auto;
   margin-right: auto;
@@ -250,32 +270,6 @@ code {
   text-align: justify;
 }
 
-.action-btn{
-  text-align:right;
-  i{
-  color:$brand-color;
-  font-size:28px;
-  text-align:right;
-  }
-}
-
-.watch-btn {
-  h3{
-    i{
-      font-size:14px;
-      margin-right:2px;
-      position: relative;
-      float: left;
-      line-height: 1;
-    }
-  }
-  display:block;
-  border:1px solid $brand-color;
-  border-radius:5px;
-  padding:4px;
-  width:140px;
-}
-
 .action-row{
   margin-top:24px;
 }
@@ -307,12 +301,6 @@ h1,h2,h3,h4,h5 {
   font-family:$heading-font-family;
   color:$accent-color;
   margin:0px;
-}
-
-h3 {
-  font-size:$text-action-btn;
-  font-weight:$font-regular;
-  color:$brand-color;
 }
 
 h5 {

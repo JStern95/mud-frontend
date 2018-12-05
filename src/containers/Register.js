@@ -111,18 +111,22 @@ export default class Register extends Component {
   render() {
     return (
               <center>
-                <h2 className="eight-bit-font">Please login or register to play ranked games!</h2>
-                <div className="register">
-                  <form>
-                    <input type="text" onChange={this.handleChange} name="username" placeholder="Username..." />
+                <div className="register-background">
+                  <div className="register">
+                    <h3 className="eight-bit-font white-font">Please login or register to play ranked games!</h3>
+                    <form className="register-form">
+                      <input type="text" onChange={this.handleChange} name="username" placeholder="Username..." />
+                      <br />
+                      <input type="password" onChange={this.handleChange} name="password" placeholder="Password..." />
+                      <br />
+                    </form>
                     <br />
-                    <input type="password" onChange={this.handleChange} name="password" placeholder="Password..." />
                     <br />
-                  </form>
-                  <button onClick={this.handleLogin}>Login</button>
-                  <br />
-                  <br />
-                  <button onClick={this.handleSignup}>Register</button>
+                    <button onClick={this.handleLogin} className="eight-bit-font register-btn">Login</button>
+                    <br />
+                    <br />
+                    <button onClick={this.handleSignup} className="eight-bit-font register-btn">Register</button>
+                  </div>
                 </div>
               </center>
     );
