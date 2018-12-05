@@ -1,58 +1,51 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppConsumer } from '../context/AppContext';
-import { ActionCable } from 'react-actioncable-provider';
 
 import NewGameModal from "../components/NewGameModal"
+import Register from "../containers/Register"
 
 export default class Lobby extends Component {
 
-  state = {
-    games: [],
-    makingGame: false
-  };
-
-  componentDidMount=()=>{
-    fetch("http://localhost:3000/api/v1/games")
-      .then(res=>res.json())
-      .then(parsed=>{
-        this.setState({games: parsed})
-      })
-  }
-
-  handleReceivedGame = response => {
-    const { game } = response;
-    this.setState({
-      games: [...this.state.games, game]
-    });
-  };
-
-  mapGames = ()=> {
-    return this.state.games.map(game=><li>{game.title}</li>)
-  }
-
   render() {
     return (
-      <div className="gamelist">
-        <h1>Lobby</h1>
-        <ul>
-          <li><NavLink to={"/games/local"}>Local Game</NavLink></li>
-          <br/>
-          <AppConsumer>
-            {context=>{
-              return(!context.loggedIn ? <p> Please log in to see ranked games! </p> :
-                <>
-                  <NewGameModal />
-                  {this.state.games.length === 0 ? null : this.mapGames()}
-                </>
-                    )}}
-              </AppConsumer>
-              <ActionCable
-                channel={{ channel: 'LobbyChannel' }}
-                onReceived={this.handleReceivedGame}
-              />
-        </ul>
-      </div>
+      <div className="lobby">
+        <h1><center><h1 className="eight-bit-font lobby-header">Lobby</h1></center></h1>
+              <div className="container">
+                <div className="cellphone-container">
+                  <div className="movie">
+                    <img className="movie-img" src="https://i.imgur.com/CoFXu7L.png"></img>
+                    <div className="text-movie-cont">
+                          <h1 className="white-font">Local Comp</h1>
+                      <div className="mr-grid">
+                        <div className="col1">
+                          <p className="movie-description">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="cellphone-container">
+                <AppConsumer>
+                  {context=>{
+                    return(!context.loggedIn ? <Register /> :
+                  <div className="movie">
+                    <img className="movie-img" src="https://i.imgur.com/C29msA4.png"></img>
+                    <div className="text-movie-cont">
+                          <h1 className="white-font">Single Ranked</h1>
+                      <div className="mr-grid">
+                        <div className="col1">
+                              <p className="movie-description">Play against 25 computer enemies in a final showdown!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}}
+          </AppConsumer>
+                </div>
+              </div>
+</div>
     );
   }
 };

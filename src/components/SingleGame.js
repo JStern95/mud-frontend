@@ -143,8 +143,8 @@ export default class LocalGame extends React.Component {
         //  Create some baddies to waste :)
         enemies = [];
 
-        enemiesTotal = 20;
-        enemiesAlive = 20;
+        enemiesTotal = 25;
+        enemiesAlive = 25;
 
         for (let i = 0; i < enemiesTotal; i++)
         {
@@ -247,7 +247,7 @@ export default class LocalGame extends React.Component {
           alert("You lost!")
         } else if (playerOne.health > 0) {
           this.props.increaseScore()
-          alert("You won? Impossible!")
+          alert("You survived? Impossible!")
         }
         game.destroy()
         this.props.renderStartButton()
