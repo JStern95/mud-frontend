@@ -62,6 +62,7 @@ export default class Rankings extends Component {
         <GamesWonRanking gamesWon={this.sortByWins()}/>
         <GamesLostRanking gamesLost={this.sortByLoses()}/>
       </div>
+      <center><NavLink to={"/lobby"}><button className="to-lobby-btn eight-bit-font" >Lobby</button></NavLink></center>
       <ActionCable
         channel={{ channel: 'UserChannel' }}
         onReceived={this.handleGameData}
