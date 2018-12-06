@@ -45,7 +45,7 @@ export default class Lobby extends Component {
                           <h1 className="eight-bit-font white-font no-margin-bottom">Single Ranked</h1>
                       <div className="mr-grid">
                         <div className="col1">
-                              <p className="movie-description">Play against 25 computer enemies in a final showdown!</p>
+                              <p className="movie-description white-font">Play against 25 computer enemies in a final showdown!</p>
                               <br/>
                               <center>
                                 <NavLink to={"/games/single"}><button className="eight-bit-font play-btn">Play</button></NavLink>
@@ -65,7 +65,7 @@ export default class Lobby extends Component {
                           <h1 className="eight-bit-font white-font no-margin-bottom">Rankings</h1>
                       <div className="mr-grid">
                         <div className="col1">
-                          <p className="movie-description">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                          <p className="movie-description white-font">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
                           <br/>
                           <center>
                             <NavLink to={"/rankings"}><button className="eight-bit-font play-btn">View</button></NavLink>
