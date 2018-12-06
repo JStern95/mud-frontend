@@ -10,8 +10,6 @@ export default class SingleGameRoom extends Component {
   static contextType = AppConsumer;
 
   state={
-    playerOne: 0,
-    playerTwo: 0,
     currentGame: 0,
     activeGame: false
   }
@@ -111,7 +109,7 @@ export default class SingleGameRoom extends Component {
         <div id="gameboard">
           {this.state.activeGame? <SingleGame increaseScore={this.increaseScore} decreaseScore={this.decreaseScore} renderStartButton={this.renderStartButton} key={this.state.currentGame}/> : null}
         </div>
-        <SingleControlPanel gameInfo={this.state} startGame={this.startGame}/>
+        <SingleControlPanel gameInfo={value.user} startGame={this.startGame}/>
       </div>
     )
   }

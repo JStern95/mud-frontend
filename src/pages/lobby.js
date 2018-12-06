@@ -7,6 +7,11 @@ import Register from "../containers/Register"
 
 export default class Lobby extends Component {
 
+  logout =()=>{
+    localStorage.removeItem('jwt')
+    window.location.reload()
+  }
+
   render() {
     return (
       <div className="lobby">
@@ -16,10 +21,14 @@ export default class Lobby extends Component {
                   <div className="movie">
                     <img className="movie-img" src="https://i.imgur.com/CoFXu7L.png"></img>
                     <div className="text-movie-cont">
-                          <h1 className="white-font">Local Comp</h1>
+                          <h1 className="eight-bit-font white-font no-margin-bottom">Local Comp</h1>
                       <div className="mr-grid">
                         <div className="col1">
-                          <p className="movie-description">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                          <p className="movie-description white-font">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                          <br/>
+                          <center>
+                            <NavLink to={"/games/local"}><button className="eight-bit-font play-btn">Play</button></NavLink>
+                          </center>
                         </div>
                       </div>
                     </div>
@@ -33,10 +42,14 @@ export default class Lobby extends Component {
                   <div className="movie">
                     <img className="movie-img" src="https://i.imgur.com/C29msA4.png"></img>
                     <div className="text-movie-cont">
-                          <h1 className="white-font">Single Ranked</h1>
+                          <h1 className="eight-bit-font white-font no-margin-bottom">Single Ranked</h1>
                       <div className="mr-grid">
                         <div className="col1">
                               <p className="movie-description">Play against 25 computer enemies in a final showdown!</p>
+                              <br/>
+                              <center>
+                                <NavLink to={"/games/single"}><button className="eight-bit-font play-btn">Play</button></NavLink>
+                              </center>
                         </div>
                       </div>
                     </div>
@@ -47,12 +60,16 @@ export default class Lobby extends Component {
 
                 <div className="cellphone-container">
                   <div className="movie">
-                    <img className="movie-img" src="https://i.imgur.com/CoFXu7L.png"></img>
+                    <img className="movie-img" src="https://i.imgur.com/JODt1zc.png"></img>
                     <div className="text-movie-cont">
-                          <h1 className="white-font">Test</h1>
+                          <h1 className="eight-bit-font white-font no-margin-bottom">Rankings</h1>
                       <div className="mr-grid">
                         <div className="col1">
                           <p className="movie-description">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                          <br/>
+                          <center>
+                            <NavLink to={"/rankings"}><button className="eight-bit-font play-btn">View</button></NavLink>
+                          </center>
                         </div>
                       </div>
                     </div>
@@ -60,6 +77,7 @@ export default class Lobby extends Component {
                 </div>
 
               </div>
+              <button onClick={this.logout} className="logout white-font eight-bit-font">Logout</button>
 </div>
     );
   }

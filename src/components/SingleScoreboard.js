@@ -8,7 +8,7 @@ const SingleScoreboard = () =>{
         return(
         <>
           <h1 id="scoreboard-header">Scoreboard:</h1>
-          <h2 className="eight-bit-font">{context.user.username}: {context.user.games_won}</h2>
+          <h2 className="eight-bit-font pink-font">{context.user.username}: {context.user.games_won}</h2>
         </>
       )
     }}

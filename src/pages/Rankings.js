@@ -33,33 +33,41 @@ export default class Rankings extends Component {
     sortByPlays=()=>{
       let sortedUsers=this.state.allUsers.sort(function(a, b) {
         return b.games_played - a.games_played})
-      return sortedUsers.map(user=><li>{user.username}'s games played: {user.games_played}</li>)
+      return sortedUsers.map(user=><li className="white-font h3-increase">{user.username}'s games played: <span className="score">{user.games_played}</span></li>)
     }
 
     sortByLoses=()=>{
       let sortedUsers=this.state.allUsers.sort(function(a, b) {
         return b.games_lost - a.games_lost})
-      return sortedUsers.map(user=><li>{user.username}'s games lost: {user.games_lost}</li>)
+      return sortedUsers.map(user=><li className="white-font h3-increase">{user.username}'s games lost: <span className="score">{user.games_lost}</span></li>)
     }
 
     sortByWins=()=>{
       let sortedUsers=this.state.allUsers.sort(function(a, b) {
         return b.games_won - a.games_won})
-      return sortedUsers.map(user=><li>{user.username}'s games won: {user.games_won}</li>)
+      return sortedUsers.map(user=><li className="h3-increase">{user.username}'s games won: <span className="score">{user.games_won}</span></li>)
+    }
+
+    logout =()=>{
+      localStorage.removeItem('jwt')
+      window.location.href = "http://localhost:3001/"
     }
 
   render() {
     return (
-      <>
-      <h1 className="eight-bit-font">Global Rankings</h1>
+      <div className="rankings">
+      <center><h1><h1 className="eight-bit-font"><span className="pink-font">G</span>lobal <span className="yellow-font">R</span>ankings</h1></h1></center>
+      <div className="rankings-container">
         <GamesPlayedRanking gamesPlayed={this.sortByPlays()}/>
         <GamesWonRanking gamesWon={this.sortByWins()}/>
         <GamesLostRanking gamesLost={this.sortByLoses()}/>
+      </div>
       <ActionCable
         channel={{ channel: 'UserChannel' }}
         onReceived={this.handleGameData}
       />
-      </>
+      <button onClick={this.logout} className="logout white-font eight-bit-font">Logout</button>
+      </div>
     );
   }
 };

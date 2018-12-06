@@ -36,7 +36,7 @@ export default class LocalGame extends React.Component {
         game.load.image('playerOne', 'https://i.imgur.com/E4dSIaY.png');
         game.load.image('p2Bullet', 'https://i.imgur.com/PM0aRt2.png');
         game.load.image('playerTwo', 'https://i.imgur.com/nAWwo16.png');
-        game.load.image('background', "https://i.imgur.com/9JtcWlW.png")
+        game.load.image('background', "https://i.imgur.com/Nbg44RR.png")
         game.load.image('health', "https://i.imgur.com/RCqebgh.png")
       }
 

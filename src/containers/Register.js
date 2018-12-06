@@ -44,6 +44,7 @@ export default class Register extends Component {
         if (response.ok) {
           return response.json()
         } else {
+          alert("Wrong Username or Password")
           throw response
         }
       })
@@ -86,6 +87,7 @@ export default class Register extends Component {
         if (response.ok) {
           return response.json()
         } else {
+          alert("Username taken")
           throw response
         }
       })
@@ -94,7 +96,7 @@ export default class Register extends Component {
         localStorage.setItem('jwt', JSONResponse.jwt)
         value.dispatch({
           type: 'SET_CURRENT_USER',
-          payload: JSONResponse.user.username
+          payload: JSONResponse.user
         })
       })
       .then(this.setState({
@@ -115,17 +117,20 @@ export default class Register extends Component {
                   <div className="register">
                     <h3 className="eight-bit-font white-font">Please login or register to play ranked games!</h3>
                     <form className="register-form">
-                      <input type="text" onChange={this.handleChange} name="username" placeholder="Username..." />
+                    <div className="Wrapper">
+                      <input type="text" onChange={this.handleChange} name="username" placeholder="Username..." className="Input-text" />
                       <br />
-                      <input type="password" onChange={this.handleChange} name="password" placeholder="Password..." />
+                      <input type="password" onChange={this.handleChange} name="password" placeholder="Password..." className="Input-text" />
                       <br />
+                      </div>
                     </form>
                     <br />
                     <br />
-                    <button onClick={this.handleLogin} className="eight-bit-font register-btn">Login</button>
+                    <button onClick={this.handleLogin} className="eight-bit-font register-btn white-font">Login</button>
                     <br />
                     <br />
-                    <button onClick={this.handleSignup} className="eight-bit-font register-btn">Register</button>
+                    <br />
+                    <button onClick={this.handleSignup} className="eight-bit-font register-btn white-font">Register</button>
                   </div>
                 </div>
               </center>

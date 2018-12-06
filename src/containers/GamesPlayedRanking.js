@@ -3,9 +3,12 @@ import React from 'react';
 const GamesPlayedRanking = (props)=>{
 
   return(
-    <ul>
+    <div className="obsessiveboard rankings-card">
+    <center><h2 className="eight-bit-font rankings-title yellow-font">Obsessiveboard</h2></center>
+    <ol>
       {props.gamesPlayed}
-    </ul>
+    </ol>
+    </div>
   )
 }
 
