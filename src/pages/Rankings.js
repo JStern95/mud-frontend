@@ -5,6 +5,7 @@ import { ActionCable } from 'react-actioncable-provider';
 import GamesPlayedRanking from '../containers/GamesPlayedRanking'
 import GamesWonRanking from '../containers/GamesWonRanking'
 import GamesLostRanking from '../containers/GamesLostRanking'
+import { AppConsumer } from '../context/AppContext';
 
 export default class Rankings extends Component {
 
@@ -67,7 +68,9 @@ export default class Rankings extends Component {
         channel={{ channel: 'UserChannel' }}
         onReceived={this.handleGameData}
       />
-      <button onClick={this.logout} className="logout white-font eight-bit-font">Logout</button>
+      <AppConsumer>
+        {context=> !context.loggedIn ? null :<button onClick={this.logout} className="logout white-font eight-bit-font">Logout</button>}
+    </AppConsumer>
       </div>
     );
   }

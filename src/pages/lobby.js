@@ -15,7 +15,7 @@ export default class Lobby extends Component {
     return (
       <div className="lobby">
         <h1><center><h1 className="eight-bit-font lobby-header">Lobby</h1></center></h1>
-              <div className="container">
+              <div className="lobby-container">
                 <div className="cellphone-container">
                   <div className="movie">
                     <img className="movie-img" src="https://i.imgur.com/CoFXu7L.png"></img>
@@ -76,7 +76,9 @@ export default class Lobby extends Component {
                 </div>
 
               </div>
-              <button onClick={this.logout} className="logout white-font eight-bit-font">Logout</button>
+              <AppConsumer>
+                {context=> !context.loggedIn ? null :<button onClick={this.logout} className="logout white-font eight-bit-font">Logout</button>}
+            </AppConsumer>
 </div>
     );
   }
