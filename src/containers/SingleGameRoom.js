@@ -109,7 +109,7 @@ export default class SingleGameRoom extends Component {
         <div id="gameboard">
           {this.state.activeGame? <SingleGame increaseScore={this.increaseScore} decreaseScore={this.decreaseScore} renderStartButton={this.renderStartButton} key={this.state.currentGame}/> : null}
         </div>
-        <SingleControlPanel gameInfo={value.user} startGame={this.startGame}/>
+        <SingleControlPanel gameInfo={this.state} startGame={this.startGame}/>
       </div>
     )
   }

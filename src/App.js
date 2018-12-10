@@ -45,7 +45,6 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/lobby" component={Lobby}/>
             <Route exact path="/games" render={()=><Redirect to="/lobby"/>} />
-            <Route exact path="/rules" component={Home} />
             <Route path="/games/:gameId" component={Game} />
             <Route exact path="/rankings" component={Rankings} />
             <Route component={Error} />

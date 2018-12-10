@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppConsumer } from '../context/AppContext';
 
-import NewGameModal from "../components/NewGameModal"
 import Register from "../containers/Register"
 
 export default class Lobby extends Component {
@@ -65,7 +64,7 @@ export default class Lobby extends Component {
                           <h1 className="eight-bit-font white-font no-margin-bottom">Rankings</h1>
                       <div className="mr-grid">
                         <div className="col1">
-                          <p className="movie-description white-font">Sit with a friend and beat them up in this local pvp game! Just remember: <br/> DON'T KILL THEM!</p>
+                          <p className="movie-description white-font">See the biggest winners... and losers. Will you make it to the top?</p>
                           <br/>
                           <center>
                             <NavLink to={"/rankings"}><button className="eight-bit-font play-btn">View</button></NavLink>

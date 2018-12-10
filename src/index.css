@@ -22,17 +22,6 @@ a{
 h3 {
   margin-top: 0px
 }
-/* body::after{
-  content: "";
-  background: url(https://i.imgur.com/4GPSJeR.jpg);
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -81,6 +70,12 @@ code {
   margin-left: -3.5%;
 }
 
+.home-header{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 4em
+}
+
 .start-button{
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -92,6 +87,8 @@ code {
   margin-bottom: 5px;
   height: 50px;
   background-color: #fecf17;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .go-lobby-button{
@@ -135,8 +132,9 @@ code {
 .home {
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
+  text-align: center;
 }
 
 .home::after{
@@ -170,57 +168,35 @@ code {
   z-index: -1;
 }
 
-/* .blinking{
-    animation:blinkingText 2.0s infinite;
-}
-@keyframes blinkingText{
-    0%{     color: #000;    }
-    20%{ color: transparent }
-    40%{     color: #000;    }
-    60%{   color: transparent   }
-    80%{   color: #000;   }
-    100%{   color: transparent   }
-} */
-
-/* img{
-  height: 75vh;
-} */
-
-
-/* TESTING START BUTTON */
-
 .start-btn {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
   position: relative;
   display: inline-block;
   margin: 20px 8px 0;
-  width: 200px;
-  height: 200px;
+  width: 15%;
+  height: 28%;
   z-index: 1;
-
   background: white;
   border-radius: 50%;
-
-  /* line-height: 40px; */
-  font-size: 30px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 300px;
+  margin-top: 15%;
   text-align:center;
-  /* vertical-align: 50%; */
-  /* position: absolute; */
   vertical-align:middle;
   border: 7px solid black;
-  color: black;
 }
 
 .start-btn:hover{
   background: red;
-  color: white;
   box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.5)
+}
+
+.start-btn-text{
+  font-size: 2vw;
+}
+
+.start-btn:hover .start-btn-text {
+  fill:white;
 }
 
 .lobby-header{

@@ -6,9 +6,13 @@ const Home = () => {
 	return(
 		<div className="home">
 			<Flash>
-	    	<h1><center><h1 className="eight-bit-font white-font">Don't Kill Them</h1></center></h1>
+	    	<h1 className="eight-bit-font white-font home-header">Don't Kill Them</h1>
 			</Flash>
-			<NavLink to={"/lobby"}><button className="start-btn eight-bit-font">Start</button></NavLink>
+			<NavLink to={"/lobby"}>
+				<svg width="100" height="100" className="start-btn">
+					<text fill="black" x="16%" y="57%" className="eight-bit-font start-btn-text">Start</text>
+				</svg>
+			</NavLink>
 		</div>
   )
 }

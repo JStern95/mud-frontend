@@ -3,7 +3,6 @@ import { NavLink, Redirect } from 'react-router-dom';
 
 import LocalGameRoom from "../containers/LocalGameRoom"
 import SingleGameRoom from "../containers/SingleGameRoom"
-import MultiGameRoom from "../containers/MultiGameRoom"
 
 export default class Game extends Component {
 
@@ -13,8 +12,8 @@ export default class Game extends Component {
       return <LocalGameRoom />
     } else if (routePath === "single") {
       return <SingleGameRoom />
-    }else if ((/^[0-9]+$/).test(routePath)) {
-      return <MultiGameRoom routePath={routePath}/>
+    // }else if ((/^[0-9]+$/).test(routePath)) {
+    //   return <MultiGameRoom routePath={routePath}/>
     } else {
       alert("Not a valid room")
       return <Redirect to="/lobby"/>

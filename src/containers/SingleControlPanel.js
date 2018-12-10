@@ -29,11 +29,13 @@ const SingleControlPanel = (props)=>{
         them all. Starting health is doubled!
         </p>
       {props.gameInfo.activeGame? null :
+        <>
         <div className="game-buttons">
           <button onClick={props.startGame} className="start-button eight-bit-font">Start</button>
           <br/>
           <NavLink to={"/lobby"}><button className="go-lobby-button eight-bit-font white-font">Lobby</button></NavLink>
         </div>
+        </>
       }
     </div>
   )
