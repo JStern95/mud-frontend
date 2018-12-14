@@ -24,7 +24,7 @@ export default class SingleGameRoom extends Component {
 
   increaseScore=() =>{
     debugger
-    fetch('http://dkt-api.herokuapp.com/api/v1/users/'+value.user.id, {
+    fetch('https://dkt-api.herokuapp.com/api/v1/users/'+value.user.id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export default class SingleGameRoom extends Component {
 
   decreaseScore=() =>{
     debugger
-    fetch('http://dkt-api.herokuapp.com/api/v1/users/'+value.user.id, {
+    fetch('https://dkt-api.herokuapp.com/api/v1/users/'+value.user.id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ export default class Rankings extends Component {
   }
 
   componentDidMount=()=>{
-    fetch("http://dkt-api.herokuapp.com/api/v1/users")
+    fetch("https://dkt-api.herokuapp.com/api/v1/users")
       .then(res=>res.json())
       .then(parsed=>{
         this.setState({
@@ -50,7 +50,7 @@ export default class Rankings extends Component {
 
     logout =()=>{
       localStorage.removeItem('jwt')
-      window.location.href = "http://localhost:3000/"
+      window.location.href = "https://dkt-frontend.herokuapp.com/"
     }
 
   render() {

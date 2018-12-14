@@ -18,7 +18,7 @@ class App extends Component {
   componentWillMount = () => {
     if (!!localStorage.getItem('jwt')) {
       value = this.context;
-      fetch(`http://dkt-api.herokuapp.com/api/v1/profile`, {
+      fetch(`https://dkt-api.herokuapp.com/api/v1/profile`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
