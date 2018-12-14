@@ -7,7 +7,6 @@ export const AppConsumer = AppContext.Consumer
 const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
-      debugger
       return { ...state, user: action.payload, loggedIn: true, authenticatingUser: false }
     case 'AUTHENTICATING_USER':
       return { ...state, authenticatingUser: true }

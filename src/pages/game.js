@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import LocalGameRoom from "../containers/LocalGameRoom"
 import SingleGameRoom from "../containers/SingleGameRoom"

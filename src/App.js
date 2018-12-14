@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import './App.css';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 import Home from "./pages/Home"
 import Lobby from "./pages/Lobby"
@@ -17,9 +16,9 @@ class App extends Component {
   static contextType = AppConsumer;
 
   componentWillMount = () => {
+    if (!!localStorage.getItem('jwt')) {
       value = this.context;
-      console.log(value)
-      fetch(`http://localhost:3000/api/v1/profile`, {
+      fetch(`http://dkt-api.herokuapp.com/api/v1/profile`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -27,7 +26,6 @@ class App extends Component {
         })
         .then(response => response.json())
         .then((JSONResponse) => {
-          // debugger
           if ("user" in JSONResponse) {
             value.dispatch({
                 type: 'SET_CURRENT_USER',
@@ -35,7 +33,8 @@ class App extends Component {
               })
           }
         })
-      }
+    }
+  }
 
   render() {
     return (

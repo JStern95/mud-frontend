@@ -4,7 +4,9 @@ const GamesLostRanking = (props)=>{
 
   return(
     <div className="loserboard rankings-card">
-      <center><h2 className="eight-bit-font rankings-title yellow-font negative-top-margin">Loserboard</h2></center>
+    <div className="ranking-title">
+      <h2 className="eight-bit-font rankings-title yellow-font negative-top-margin">Loserboard</h2>
+    </div>
       <div className="list-container">
         <ol>
           {props.gamesLost}

@@ -8,7 +8,7 @@ import { ActionCableProvider } from 'react-actioncable-provider';
 import { AppProvider } from "./context/AppContext"
 
 ReactDOM.render(
-  <ActionCableProvider url={"ws://localhost:3000/api/v1/cable"}>
+  <ActionCableProvider url={"wss://dkt-api.herokuapp.com/api/v1/cable"}>
       <AppProvider>
         <App />
       </AppProvider>

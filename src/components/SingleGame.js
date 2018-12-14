@@ -1,8 +1,5 @@
 import React from 'react';
 import Phaser from "phaser-ce"
-import { NavLink, Redirect } from 'react-router-dom';
-
-import { AppConsumer } from '../context/AppContext';
 
 
 export default class LocalGame extends React.Component {
