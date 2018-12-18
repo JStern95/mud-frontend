@@ -25,7 +25,7 @@ export default class Register extends Component {
 
   handleLogin = (e) => {
     e.preventDefault()
-    fetch("http://dkt-api.herokuapp.com/api/v1/login", {
+    fetch("https://dkt-api.herokuapp.com/api/v1/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export default class Register extends Component {
 
   handleSignup = (e) => {
     e.preventDefault()
-    fetch("http://dkt-api.herokuapp.com/api/v1/users", {
+    fetch("https://dkt-api.herokuapp.com/api/v1/users", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
